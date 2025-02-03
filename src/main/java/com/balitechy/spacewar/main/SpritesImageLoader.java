@@ -1,26 +1,26 @@
+
 package com.balitechy.spacewar.main;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class SpritesImageLoader {
-	
-	private String path;
-	private BufferedImage image;
-	
-	public SpritesImageLoader(String path){
-		this.path = path;
-	}
-	
-	public BufferedImage loadImage() throws IOException{
-		image = ImageIO.read(getClass().getResource(path));
-		return image;
-	}
-	
-	public BufferedImage getImage(int top, int left, int width, int height){
-		BufferedImage img = image.getSubimage(top, left, width, height);
-		return img;
-	}
+    private BufferedImage spritesheet;
+
+    public SpritesImageLoader(String path) {
+        try {
+            spritesheet = ImageIO.read(getClass().getResource(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadImage() throws IOException {
+        // En este caso, la imagen ya se carga en el constructor, así que puedes dejar este método vacío o eliminarlo
+    }
+
+    public BufferedImage getImage(int x, int y, int width, int height) {
+        return spritesheet.getSubimage(x, y, width, height);
+    }
 }
